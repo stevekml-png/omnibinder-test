@@ -1,18 +1,17 @@
-# OmniBinder Hosted Test v2
+# OmniBinder Hosted Test v3
 
-This version is for real HTTPS testing on GitHub Pages / Netlify / Vercel.
+This hosted test version is for real mobile and desktop browser testing on HTTPS hosting such as GitHub Pages.
 
-## What changed in v2
+## v3 updates
 
-- Separate mobile buttons:
-  - Choose from library
-  - Take photo
-- Uses `capture="environment"` only on the camera button.
-- The library button has no `capture`, so iPhone should allow choosing from Photos.
-- Photo previews are displayed as separate cards.
-- Tap/click photo to enlarge.
-- Photos are stored only in browser localStorage for demo testing.
+- Bottom mobile navigation is localized.
+- Desktop sidebar navigation is localized.
+- Photos can be viewed/enlarged.
+- Each photo can be deleted individually.
+- Each photo can be replaced from library.
+- Each photo can be retaken from camera.
+- Clear all photos is still available.
 
-## Deploy
+## Notes
 
-Upload `index.html` and `README.md` to the root of your GitHub repository, replacing the old files.
+This is still demo storage only. Photos are saved in the browser localStorage and are not uploaded to a server or connected to a real account.
