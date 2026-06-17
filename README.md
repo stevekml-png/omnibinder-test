@@ -1,5 +1,3 @@
-# OmniBinder Hosted Test v11
+# OmniBinder Hosted Test v12
 
-Fix: 1-image-per-page viewer now always contains the full uploaded image using background-size: contain. 9-image slots also use contained background rendering.
-
-Deploy index.html and README.md to GitHub Pages. Test with ?v=11.
+Fixes 1 image/photo per page display using real img object-fit: contain, so the full image fits inside the binder page on mobile and desktop.
