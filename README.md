@@ -1,21 +1,12 @@
-# OmniBinder Hosted Test v15
+# OmniBinder Hosted Test v16
 
-Safe-area fullscreen binder viewer + Home Screen icon update.
+This version keeps the v15 Home Screen icon and iPhone safe-area fixes, and further enlarges the desktop binder viewer.
 
-Fixes / additions:
-- Prevents Close / title / page number from overlapping iPhone time / Dynamic Island / signal area when launched from Home Screen.
-- Adds Apple Home Screen icon and PWA manifest icons.
-- Keeps binder viewer in portrait.
-- Preserves full images in 1-image and 9-image pages.
-- Keeps previous/next controls above the iPhone home indicator.
+## What changed in v16
 
-Files to upload to GitHub:
-- index.html
-- README.md
-- manifest.json
-- omnibinder-icon-180.png
-- omnibinder-icon-192.png
-- omnibinder-icon-512.png
+- Desktop binder viewer uses a more immersive full-window layout.
+- Previous / Next controls move to the left and right sides, so the binder page can be larger.
+- Close / title / page number are lightweight overlays instead of taking a full header row.
+- Mobile safe-area support and Home Screen icon files are kept.
 
-Test URL after GitHub upload:
-https://stevekml-png.github.io/omnibinder-test/?v=15
+Upload all files in this folder to GitHub Pages. Use `?v=16` to avoid cache.
