@@ -84,6 +84,137 @@
 @media (max-width:900px){
   .viewerPage{top:calc(env(safe-area-inset-top) + 54px);bottom:calc(env(safe-area-inset-bottom) + 74px);}
 }
+
+
+/* v17 desktop binder viewer: bigger binder on the left, all controls on the right */
+@media (min-width:901px){
+  .viewer{
+    display:none;
+    grid-template-columns:minmax(0,1fr) 300px;
+    grid-template-rows:1fr auto;
+    gap:18px;
+    height:100dvh;
+    padding:22px 22px 22px 28px;
+    background:#f7f8ff;
+    overflow:hidden;
+  }
+  .viewer.show{display:grid;}
+  .viewerPage{
+    position:static !important;
+    grid-column:1;
+    grid-row:1 / span 2;
+    inset:auto;
+    height:100%;
+    min-height:0;
+    padding:0;
+    display:grid;
+    place-items:center start;
+    overflow:auto;
+  }
+  .viewerCard{
+    width:var(--viewer-w, 760px) !important;
+    height:var(--viewer-h, 1013px) !important;
+    max-width:none !important;
+    max-height:none !important;
+    aspect-ratio:3/4;
+    margin:0 0 0 8px;
+    border:9px solid #111;
+    border-radius:34px;
+    box-shadow:12px 12px 0 #111;
+    padding:22px;
+    background:#fff;
+  }
+  .viewerCard.singleMode{padding:14px;}
+  .viewerTop{
+    position:static !important;
+    grid-column:2;
+    grid-row:1;
+    height:auto;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:14px;
+    padding:18px;
+    border:5px solid #111;
+    border-radius:24px;
+    background:#fff;
+    box-shadow:6px 6px 0 #111;
+    pointer-events:auto;
+  }
+  .viewerTop .btn{
+    width:100%;
+    min-height:52px;
+    padding:10px 14px;
+    border-width:4px;
+    border-radius:16px;
+    box-shadow:3px 3px 0 #111;
+    background:var(--cream);
+  }
+  #viewerTitle{
+    order:2;
+    max-width:none;
+    width:100%;
+    background:#fff;
+    border:4px solid #111;
+    border-radius:18px;
+    padding:14px 12px;
+    font-size:24px;
+    line-height:1.15;
+    text-align:left;
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+  }
+  #viewerPageText{
+    order:3;
+    justify-self:auto;
+    width:100%;
+    background:var(--cream);
+    border:4px solid #111;
+    border-radius:18px;
+    padding:12px;
+    font-size:20px;
+    text-align:center;
+  }
+  #closeViewer{order:1;}
+  .viewerBtns{
+    position:static !important;
+    grid-column:2;
+    grid-row:2;
+    transform:none;
+    height:auto;
+    background:#fff;
+    border:5px solid #111;
+    border-radius:24px;
+    box-shadow:6px 6px 0 #111;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+    padding:16px;
+    pointer-events:auto;
+  }
+  .viewerBtns .btn{
+    position:static !important;
+    transform:none !important;
+    width:100%;
+    min-width:0;
+    min-height:58px;
+    border-width:4px;
+    border-radius:18px;
+    box-shadow:3px 3px 0 #111;
+    padding:12px 14px;
+  }
+  #prevPage,#nextPage{left:auto;right:auto;top:auto;}
+}
+
+@media (min-width:901px) and (max-width:1100px){
+  .viewer{grid-template-columns:minmax(0,1fr) 240px;gap:14px;padding:16px;}
+  #viewerTitle{font-size:20px;}
+  #viewerPageText{font-size:18px;}
+}
+
 </style>
 </head>
 <body>
@@ -140,9 +271,29 @@ function renderBinders(){const box=document.getElementById('binderList');if(!bin
 function renderTargets(){const sel=document.getElementById('targetBinder');if(!binders.length){sel.innerHTML=`<option>${tr('noBinder')}</option>`;return}sel.innerHTML=binders.map((b,i)=>`<option value="${i}">${escapeHtml(b.name)}</option>`).join('')}
 function addQueueToBinder(){if(!binders.length){go('binders');return}const idx=+document.getElementById('targetBinder').value||0;binders[idx].photos=(binders[idx].photos||[]).concat(queue);queue=[];save();applyLang();openViewer(idx)}
 function openPreview(src){document.getElementById('modalImg').src=src;document.getElementById('imageModal').classList.add('show')}function closePreview(){document.getElementById('imageModal').classList.remove('show')}
-function openViewer(i){viewerBinder=i;viewerPage=0;document.getElementById('viewer').classList.add('show');renderViewer()}function closeViewer(){document.getElementById('viewer').classList.remove('show')}
-function renderViewer(){const b=binders[viewerBinder];if(!b)return;document.getElementById('viewerTitle').textContent=b.name;const totalPages=b.layout==='9'?Math.max(1,Math.ceil((b.photos||[]).length/9)):Math.max(1,(b.photos||[]).length);document.getElementById('viewerPageText').textContent=viewerPage===0?tr('cover'):`${tr('page')} ${viewerPage}/${totalPages}`;const card=document.getElementById('viewerCard');card.classList.remove('singleMode');if(viewerPage===0){card.innerHTML=`<div class="coverPage ${b.holo?'holo':''}"><h2>${escapeHtml(b.name)}</h2><p>${escapeHtml(catLabel(b.cat))}</p><p>${b.layout==='9'?tr('ninePhoto'):tr('onePhoto')}</p><p>${escapeHtml(b.prompt||'OmniBinder')}</p></div>`;return}const photos=b.photos||[];if(!photos.length){card.innerHTML=`<div class="empty">${tr('noCards')}</div>`;return}if(b.layout==='1'){card.classList.add('singleMode');const p=photos[viewerPage-1];card.innerHTML=p?`<div class="pageOne"><img class="singleImage" src="${p.data}" data-enlarge-src="${p.data}" alt="photo"></div>`:`<div class="empty">${tr('noCards')}</div>`}else{const start=(viewerPage-1)*9;const arr=photos.slice(start,start+9);card.innerHTML=`<div class="pageNine">${Array.from({length:9}).map((_,i)=>arr[i]?`<div class="slot"><div class="fitSlot" style="background-image:url('${arr[i].data}')" data-enlarge-src="${arr[i].data}" role="img" aria-label="photo"></div></div>`:`<div class="slot"></div>`).join('')}</div>`}}
+function openViewer(i){viewerBinder=i;viewerPage=0;document.getElementById('viewer').classList.add('show');updateViewerSize();renderViewer()}function closeViewer(){document.getElementById('viewer').classList.remove('show')}
+function renderViewer(){updateViewerSize();const b=binders[viewerBinder];if(!b)return;document.getElementById('viewerTitle').textContent=b.name;const totalPages=b.layout==='9'?Math.max(1,Math.ceil((b.photos||[]).length/9)):Math.max(1,(b.photos||[]).length);document.getElementById('viewerPageText').textContent=viewerPage===0?tr('cover'):`${tr('page')} ${viewerPage}/${totalPages}`;const card=document.getElementById('viewerCard');card.classList.remove('singleMode');if(viewerPage===0){card.innerHTML=`<div class="coverPage ${b.holo?'holo':''}"><h2>${escapeHtml(b.name)}</h2><p>${escapeHtml(catLabel(b.cat))}</p><p>${b.layout==='9'?tr('ninePhoto'):tr('onePhoto')}</p><p>${escapeHtml(b.prompt||'OmniBinder')}</p></div>`;return}const photos=b.photos||[];if(!photos.length){card.innerHTML=`<div class="empty">${tr('noCards')}</div>`;return}if(b.layout==='1'){card.classList.add('singleMode');const p=photos[viewerPage-1];card.innerHTML=p?`<div class="pageOne"><img class="singleImage" src="${p.data}" data-enlarge-src="${p.data}" alt="photo"></div>`:`<div class="empty">${tr('noCards')}</div>`}else{const start=(viewerPage-1)*9;const arr=photos.slice(start,start+9);card.innerHTML=`<div class="pageNine">${Array.from({length:9}).map((_,i)=>arr[i]?`<div class="slot"><div class="fitSlot" style="background-image:url('${arr[i].data}')" data-enlarge-src="${arr[i].data}" role="img" aria-label="photo"></div></div>`:`<div class="slot"></div>`).join('')}</div>`}}
 function nextPage(){const b=binders[viewerBinder];if(!b)return;const total=b.layout==='9'?Math.max(1,Math.ceil((b.photos||[]).length/9)):Math.max(1,(b.photos||[]).length);viewerPage=Math.min(total,viewerPage+1);renderViewer()}function prevPage(){viewerPage=Math.max(0,viewerPage-1);renderViewer()}function escapeHtml(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+
+function updateViewerSize(){
+  const card=document.getElementById('viewerCard');
+  if(!card) return;
+  if(window.innerWidth<=900){
+    card.style.removeProperty('--viewer-w');
+    card.style.removeProperty('--viewer-h');
+    return;
+  }
+  const controlW = window.innerWidth < 1100 ? 290 : 370;
+  const availableW = Math.max(320, window.innerWidth - controlW - 70);
+  const availableH = Math.max(420, window.innerHeight - 52);
+  let w = Math.min(availableW, availableH * 0.75, 900);
+  let h = w * 4 / 3;
+  card.style.setProperty('--viewer-w', Math.floor(w)+'px');
+  card.style.setProperty('--viewer-h', Math.floor(h)+'px');
+}
+window.addEventListener('resize', updateViewerSize);
+window.addEventListener('orientationchange', ()=>setTimeout(updateViewerSize,200));
+
 function bindEvents(){document.body.addEventListener('click',e=>{const goId=e.target.closest('[data-go]')?.dataset.go;if(goId){go(goId);return}const langBtn=e.target.closest('[data-lang]');if(langBtn){lang=langBtn.dataset.lang;applyLang();return}const prev=e.target.closest('[data-preview]');if(prev){openPreview(queue[+prev.dataset.preview].data);return}const del=e.target.closest('[data-del]');if(del){queue.splice(+del.dataset.del,1);save();applyLang();return}const ret=e.target.closest('[data-retake]');if(ret){replaceIndex=+ret.dataset.retake;document.getElementById('retakeInput').click();return}const view=e.target.closest('[data-view]');if(view){openViewer(+view.dataset.view);return}if(e.target.closest('[data-goscan]')){go('scan');return}const db=e.target.closest('[data-deletebinder]');if(db){binders.splice(+db.dataset.deletebinder,1);save();applyLang();return}const es=e.target.closest('[data-enlarge-src]');if(es){openPreview(es.dataset.enlargeSrc);return}});document.getElementById('createBinderBtn').onclick=createBinder;document.getElementById('clearBindersBtn').onclick=()=>{binders=[];save();applyLang()};document.getElementById('chooseLibrary').onclick=()=>document.getElementById('libraryInput').click();document.getElementById('takePhoto').onclick=()=>document.getElementById('cameraInput').click();document.getElementById('libraryInput').onchange=e=>filesToQueue([...e.target.files]);document.getElementById('cameraInput').onchange=e=>filesToQueue([...e.target.files]);document.getElementById('retakeInput').onchange=e=>{filesToQueue([...e.target.files],replaceIndex);replaceIndex=null};document.getElementById('addQueueBtn').onclick=addQueueToBinder;document.getElementById('clearQueueBtn').onclick=()=>{queue=[];save();applyLang()};document.getElementById('closeModal').onclick=closePreview;document.getElementById('imageModal').onclick=e=>{if(e.target.id==='imageModal')closePreview()};document.getElementById('closeViewer').onclick=closeViewer;document.getElementById('nextPage').onclick=nextPage;document.getElementById('prevPage').onclick=prevPage;}
 bindEvents();applyLang();go(current);
 </script>
