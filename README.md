@@ -1,9 +1,5 @@
-# OmniBinder Hosted Test v10
+# OmniBinder Hosted Test v11
 
-Fixes:
-- Binder viewer is forced to portrait on desktop and mobile.
-- 9-image/page layout uses a locked 3x3 grid.
-- Any photo shape is contained inside each slot without overflow.
-- Category labels remain localized, including 海賊王 / One Piece for Traditional Chinese HK.
+Fix: 1-image-per-page viewer now always contains the full uploaded image using background-size: contain. 9-image slots also use contained background rendering.
 
-Deploy by replacing index.html and README.md on GitHub Pages. Test with ?v=10.
+Deploy index.html and README.md to GitHub Pages. Test with ?v=11.
