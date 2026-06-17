@@ -1,19 +1,18 @@
-# OmniBinder Hosted Test Version
+# OmniBinder Hosted Test v2
 
-This prototype is intended for real mobile + desktop testing on HTTPS hosting.
+This version is for real HTTPS testing on GitHub Pages / Netlify / Vercel.
 
-Recommended hosting:
-- Netlify: drag this folder or the ZIP into Netlify Drop
-- Vercel: import folder/project
-- GitHub Pages: upload index.html
+## What changed in v2
 
-Open `index.html` locally on desktop for basic testing, but mobile photo upload should be tested on HTTPS hosting.
+- Separate mobile buttons:
+  - Choose from library
+  - Take photo
+- Uses `capture="environment"` only on the camera button.
+- The library button has no `capture`, so iPhone should allow choosing from Photos.
+- Photo previews are displayed as separate cards.
+- Tap/click photo to enlarge.
+- Photos are stored only in browser localStorage for demo testing.
 
-Features:
-- Mobile + desktop responsive layout
-- Upload/take photo from Scan page
-- Desktop drag and drop
-- Preview cards
-- Tap/click to enlarge photo
-- Demo localStorage storage
-- Language switching: English / Traditional Chinese / Japanese / Korean
+## Deploy
+
+Upload `index.html` and `README.md` to the root of your GitHub repository, replacing the old files.
