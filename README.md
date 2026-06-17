@@ -1,17 +1,9 @@
-# OmniBinder Hosted Test v6
+# OmniBinder Hosted Test v9
 
-This version focuses on the binder-building system:
+Fixes:
+- Binder viewer forced to portrait binder-page perspective on desktop and mobile.
+- 9-image page uses fixed 3x3 rows so photos stay inside slots and do not overflow.
+- Images use contain fitting, so screenshots or non-card-shaped photos remain visible.
+- Category filters remain localized, including 海賊王 / One Piece for Traditional Chinese HK.
 
-- Mobile and desktop photo upload / camera test
-- Photo queue with tap-to-enlarge, delete, retake
-- Create binder with category, cover prompt, and layout
-- Layout wording changed to 1 image/photo per page or 9 images/photos per page
-- Real binder-style full-screen viewer: cover first, then page-by-page navigation
-- Tap cards/images inside binder pages to enlarge
-- Multi-language nav labels for mobile bottom nav and desktop sidebar
-- AI cover is still a visual mock; real AI background removal is not connected yet
-
-Deploy by replacing `index.html` and `README.md` in GitHub Pages.
-
-Suggested cache-bust URL:
-`https://stevekml-png.github.io/omnibinder-test/?v=6`
+Upload `index.html` and `README.md` to GitHub, then test with `?v=9`.
