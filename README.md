@@ -1,10 +1,21 @@
-# OmniBinder Hosted Test v13
+# OmniBinder Hosted Test v15
 
-Updates:
-- Larger fullscreen binder viewer for desktop and mobile.
-- Viewer controls are more compact and overlay-style, giving the binder page more space.
-- Added PWA metadata so iPhone users can add to Home Screen for a cleaner app-like full-screen test.
-- Added Yu-Gi-Oh! and MTG categories with EN / 繁中(HK) / 日本語 / 한국어 labels.
+Safe-area fullscreen binder viewer + Home Screen icon update.
+
+Fixes / additions:
+- Prevents Close / title / page number from overlapping iPhone time / Dynamic Island / signal area when launched from Home Screen.
+- Adds Apple Home Screen icon and PWA manifest icons.
+- Keeps binder viewer in portrait.
+- Preserves full images in 1-image and 9-image pages.
+- Keeps previous/next controls above the iPhone home indicator.
+
+Files to upload to GitHub:
+- index.html
+- README.md
+- manifest.json
+- omnibinder-icon-180.png
+- omnibinder-icon-192.png
+- omnibinder-icon-512.png
 
 Test URL after GitHub upload:
-https://stevekml-png.github.io/omnibinder-test/?v=13
+https://stevekml-png.github.io/omnibinder-test/?v=15

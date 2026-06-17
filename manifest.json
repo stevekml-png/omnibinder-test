@@ -1,0 +1,15 @@
+{
+  "name": "OmniBinder",
+  "short_name": "OmniBinder",
+  "description": "OmniBinder hosted test app for digital card binders.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f8ff",
+  "theme_color": "#3b4cca",
+  "icons": [
+    { "src": "./omnibinder-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./omnibinder-icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
