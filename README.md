@@ -1,17 +1,12 @@
-# OmniBinder Hosted Test v3
+# OmniBinder Hosted Test Version v4
 
-This hosted test version is for real mobile and desktop browser testing on HTTPS hosting such as GitHub Pages.
+This version is for real HTTPS testing on mobile and desktop.
 
-## v3 updates
+Changes in v4:
+- Photo cards now only show Delete and Retake.
+- Tap/click the photo itself to enlarge.
+- Retake replaces the existing photo.
+- On desktop, Retake may open the file library because desktop browsers usually ignore mobile camera capture.
+- On mobile, Retake should open camera when supported by the browser.
 
-- Bottom mobile navigation is localized.
-- Desktop sidebar navigation is localized.
-- Photos can be viewed/enlarged.
-- Each photo can be deleted individually.
-- Each photo can be replaced from library.
-- Each photo can be retaken from camera.
-- Clear all photos is still available.
-
-## Notes
-
-This is still demo storage only. Photos are saved in the browser localStorage and are not uploaded to a server or connected to a real account.
+Upload `index.html` and `README.md` to GitHub Pages root.
