@@ -1,27 +1,17 @@
-# OmniBinder Hosted Test v5 — Binder Builder
+# OmniBinder Hosted Test v6
 
-This static prototype tests the next MVP function: creating digital binders and adding scanned photos into a binder page.
+This version focuses on the binder-building system:
 
-## What is included
+- Mobile and desktop photo upload / camera test
+- Photo queue with tap-to-enlarge, delete, retake
+- Create binder with category, cover prompt, and layout
+- Layout wording changed to 1 image/photo per page or 9 images/photos per page
+- Real binder-style full-screen viewer: cover first, then page-by-page navigation
+- Tap cards/images inside binder pages to enlarge
+- Multi-language nav labels for mobile bottom nav and desktop sidebar
+- AI cover is still a visual mock; real AI background removal is not connected yet
 
-- Mobile and desktop responsive layout
-- Language switching: English, Traditional Chinese, Japanese, Korean
-- Photo upload / camera capture / preview / enlarge / delete / retake
-- Create new binder
-- Choose card category
-- Choose binder layout: 1 card per page or 9 cards per page
-- AI cover prompt mock
-- Animated holographic cover mock
-- Add all Scan Queue photos into the selected binder
-- Binder detail page with 1-card or 9-card page layout
-- Demo storage in browser localStorage
+Deploy by replacing `index.html` and `README.md` in GitHub Pages.
 
-## Important limitation
-
-This is still a static hosted demo. It does not upload files to a backend or cloud storage. Photos and binders are stored only in the browser localStorage on the current device.
-
-## Suggested test URL cache bust
-
-After replacing GitHub files, open:
-
-https://stevekml-png.github.io/omnibinder-test/?v=5
+Suggested cache-bust URL:
+`https://stevekml-png.github.io/omnibinder-test/?v=6`
