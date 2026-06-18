@@ -1,11 +1,14 @@
-# OmniBinder Hosted Test Version v17
+# OmniBinder Hosted Test v18
 
-This version keeps the iPhone Home Screen safe-area and icon fixes, and changes the desktop binder viewer layout:
+Fixes desktop binder viewer layout.
 
-- Larger portrait binder page on the left
-- Close / binder name / page indicator moved to a right control panel
-- Previous / Next buttons moved to the right control panel
-- Mobile viewer keeps safe-area layout
-- Upload, preview, enlarge, delete, retake, binder creation, and multilingual categories remain available
+## v18 changes
+- True two-column desktop binder viewer.
+- Large binder page stays on the left.
+- Close, binder name, page number, Previous and Next stay in the fixed right control panel.
+- No overlapping controls.
+- Desktop binder uses fit-width and can scroll vertically if the page is taller than the browser.
+- Keeps v15+ iPhone Home Screen safe-area and app icon files.
 
-Upload all files to GitHub Pages and test with `?v=17`.
+Test URL after upload:
+https://stevekml-png.github.io/omnibinder-test/?v=18
